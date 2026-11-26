@@ -479,10 +479,16 @@ async function loadAdmin(){
   const [regRes,visRes,actRes,missionRes]=await Promise.all([
     sb.from('registrations').select('id,member_id,registered_at,status,profiles(display_name,home_postcode)').eq('program_id',PROGRAM_ID).order('registered_at',{ascending:false}),
     sb.from('visits').select('id,member_id,attendance_date,visit_source').eq('program_id',PROGRAM_ID),
-    sb.from('activity_submissions').select('id,member_id,activity_date,activity_type,activity_postcode,social_post_url,status,submitted_at,profiles(display_name)').eq('program_id',PROGRAM_ID).order('submitted_at',{ascending:false}),
+    sb.from('activity_submissions').select('id,member_id,activity_date,activity_type,activity_postcode,social_post_url,status,submitted_at,profiles!activity_submissions_member_id_fkey(display_name)').eq('program_id',PROGRAM_ID).order('submitted_at',{ascending:false}),
     sb.from('missions').select('*').eq('program_id',PROGRAM_ID).order('mission_number')
   ]);
-  if(regRes.error||visRes.error||actRes.error||missionRes.error){setNotice('Staff dashboard could not load all data. Check staff permissions.','error');return;}
+  if(regRes.error||visRes.error||actRes.error||missionRes.error){
+    const failed=[['registrations',regRes.error],['visits',visRes.error],['activity_submissions',actRes.error],['missions',missionRes.error]].filter(([,err])=>err);
+    console.error('Summer Survivor admin data load failed:',failed);
+    const details=failed.map(([table,err])=>`${table}: ${err.message||err.code||'Request failed'}`).join(' · ');
+    setNotice('Staff dashboard could not load all data. '+details,'error');
+    return;
+  }
   state.registrations=regRes.data||[];state.staffVisits=visRes.data||[];state.staffActivities=actRes.data||[];
   $('#adminRegistrations').textContent=state.registrations.filter(r=>r.status==='active').length;
   $('#adminVisits').textContent=state.staffVisits.length;
