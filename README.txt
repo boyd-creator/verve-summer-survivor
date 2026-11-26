@@ -1,24 +1,25 @@
-VERVE FOR LIFE — SUMMER SURVIVOR 2026/27 CONCEPT PROTOTYPE
+VERVE FOR LIFE — SUMMER SURVIVOR 2026/27
+Engagement dashboard prototype
 
-Open index.html in a modern browser to view the clickable prototype.
+FILES
+- index.html: responsive front-end prototype for the Summer Survivor member hub.
 
-WHAT IS INCLUDED
-- Member overview and 20-visit progress display
-- Three mission placeholders (not six weekly missions)
-- Holiday workout/yoga submission flow
-- Out-of-home-postcode rule check
-- Social post URL and tag confirmation
-- Pending/approved demo claims
-- Demo admin preview for updating sample attendance and approving a holiday claim
-- Browser localStorage so demo state persists on that browser/device
+RECENT DASHBOARD IMPROVEMENTS
+- Quick actions to jump to holiday activity submission and missions.
+- Milestone path at 5, 10, 15 and 20 verified visits.
+- Visual completion reward progress card.
+- Leaderboard preview with clearly labelled illustrative sample scores.
+- Recent activity timeline for demo actions.
+- Admin preview controls for demo attendance and mission completion.
+- Four-tab member navigation: Overview, Missions, Leaderboard and My activity.
 
 IMPORTANT LIMITATIONS
-- This is a front-end prototype only. It is not a live registration system.
-- It has no user accounts, authentication, cloud database, hosting, email/SMS notifications, or Momence/booking-system integration.
-- Local demo data stays in the browser and is not shared with Verve or other members.
-- Admin preview is not secured and must never be used with real member data.
-- Mission descriptions/dates, final program dates, registration closing date, team ownership, and singlet eligibility need approval.
-- The uploaded Geronimo builder PDF currently shows 18 sessions and six missions. This prototype follows Nath's later brief instead: 20 visits and three missions over six weeks.
+- This is a front-end prototype only.
+- Demo data is stored in the current browser's localStorage; it is not shared between members or staff.
+- The leaderboard uses illustrative sample entries, not actual Verve members.
+- No real authentication, shared database, Momence integration, notifications, or live attendance sync is connected.
+- Do not enter real member information or use this prototype for live registrations.
+- Program dates, mission details, and singlet eligibility must be approved by Verve before launch.
 
-NEXT STEP FOR A LIVE APP
-Choose an app platform and configure a secure backend, member login, admin roles, data retention/privacy, real registration, attendance verification, mission release schedule, and deployment. Confirm whether attendance is to be synced with Momence or updated by staff before launch.
+DEPLOYMENT
+Upload index.html to the root of the connected GitHub repository. Netlify should redeploy automatically after the commit.

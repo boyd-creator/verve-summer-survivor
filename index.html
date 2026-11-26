@@ -86,6 +86,57 @@ button,input,select,textarea{font:inherit}button{cursor:pointer}button:focus-vis
 .activity:hover{transform:translateX(3px);border-color:rgba(100,177,74,.3);box-shadow:0 7px 18px rgba(24,61,33,.05)}
 .activity b{font-size:12px;font-weight:900}.activity small{display:block;color:var(--muted);font-size:10px;margin-top:3px;line-height:1.45}
 .activity a{color:var(--green-dark);font-weight:850;text-decoration-thickness:1px;text-underline-offset:2px}
+
+/* Engagement dashboard additions */
+.dashboard-intro{display:flex;justify-content:space-between;align-items:center;gap:18px;margin:18px 2px 2px;animation:riseIn .55s var(--ease) both}
+.dashboard-intro .kicker{font-size:9px;letter-spacing:.17em;text-transform:uppercase;font-weight:950;color:var(--green-dark)}
+.dashboard-intro h2{margin:4px 0 3px;font-size:clamp(20px,3vw,27px);letter-spacing:-.055em;line-height:1.1}
+.dashboard-intro p{margin:0;color:var(--muted);font-size:12px}
+.quick-actions{display:flex;gap:8px;flex-wrap:wrap}
+.quick-action{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(34,79,46,.11);border-radius:12px;padding:10px 13px;background:rgba(255,255,255,.82);color:var(--deep);font-size:11px;font-weight:900;box-shadow:0 5px 16px rgba(24,49,31,.04);transition:transform .25s var(--ease),box-shadow .25s,border-color .25s}
+.quick-action:hover{transform:translateY(-3px);box-shadow:0 10px 22px rgba(24,49,31,.09);border-color:rgba(101,173,77,.34)}
+.quick-action.primary{background:linear-gradient(135deg,#d7ffc0,#a8ed7f);border-color:transparent}
+.dashboard-extras{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px}
+.milestone-track{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:18px}
+.milestone{position:relative;padding:13px 8px 11px;text-align:center;border:1px solid rgba(31,70,41,.1);border-radius:15px;background:linear-gradient(145deg,#fbfdf9,#f2f7ef);transition:transform .25s var(--ease),background .25s,border-color .25s}
+.milestone .medal{width:32px;height:32px;margin:0 auto 8px;border-radius:11px;display:grid;place-items:center;background:#e8eee5;color:#8a988d;font-size:15px;filter:grayscale(1);transition:all .35s var(--ease)}
+.milestone b{display:block;font-size:12px;letter-spacing:-.02em}.milestone small{display:block;margin-top:3px;color:var(--muted);font-size:9px;line-height:1.35}
+.milestone.unlocked{background:linear-gradient(145deg,#f4ffed,#e7f8dd);border-color:rgba(89,166,67,.25);transform:translateY(-2px)}
+.milestone.unlocked .medal{background:linear-gradient(145deg,#d7ffc0,#9ce879);color:#245a35;filter:none;box-shadow:0 5px 13px rgba(95,176,69,.18)}
+.next-milestone{margin-top:13px;padding:12px 14px;border-radius:14px;background:linear-gradient(100deg,#143522,#245638);color:white;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.next-milestone b{font-size:12px}.next-milestone span{font-size:10px;color:rgba(255,255,255,.72)}
+.next-milestone strong{font-size:18px;color:#c7ff9f;letter-spacing:-.05em;white-space:nowrap}
+.leaderboard-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.live-note{display:inline-flex;align-items:center;gap:6px;background:#f0f7eb;color:#4f7747;border-radius:999px;padding:6px 9px;font-size:9px;font-weight:900;white-space:nowrap}
+.live-note:before{content:"";width:6px;height:6px;background:#77c85b;border-radius:50%;box-shadow:0 0 0 4px rgba(119,200,91,.12)}
+.leaderboard-list{display:grid;gap:7px;margin-top:14px}
+.leader-row{display:grid;grid-template-columns:28px minmax(0,1fr) auto;gap:10px;align-items:center;padding:9px 10px;border:1px solid rgba(31,70,41,.08);border-radius:13px;background:rgba(255,255,255,.75);transition:transform .22s var(--ease),background .22s}
+.leader-row:hover{transform:translateX(3px);background:#f7fbf4}
+.leader-row.you{background:linear-gradient(100deg,#f0ffe6,#f9fff6);border-color:rgba(97,175,69,.28)}
+.rank-number{width:26px;height:26px;border-radius:9px;display:grid;place-items:center;background:#eff3ed;color:#66766b;font-weight:950;font-size:10px}
+.leader-row:nth-child(1) .rank-number{background:#fff3d8;color:#a97616}.leader-row:nth-child(2) .rank-number{background:#edf0f2;color:#65717a}.leader-row:nth-child(3) .rank-number{background:#f5e8dc;color:#9a6741}
+.leader-person{min-width:0}.leader-person b{display:block;font-size:11px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.leader-person small{display:block;color:var(--muted);font-size:9px}
+.leader-score{font-size:12px;font-weight:950;color:#21452e;text-align:right}.leader-score small{display:block;font-size:8px;color:var(--muted);font-weight:700}
+.leaderboard-foot{margin-top:11px;display:flex;justify-content:space-between;gap:10px;align-items:center;color:var(--muted);font-size:9px}
+.activity-timeline{display:grid;gap:0;margin-top:12px}
+.timeline-item{position:relative;display:grid;grid-template-columns:25px 1fr;gap:10px;padding:0 0 15px}
+.timeline-item:not(:last-child):before{content:"";position:absolute;left:11px;top:24px;bottom:0;width:1px;background:#dce8d7}
+.timeline-icon{width:23px;height:23px;border-radius:8px;background:#edf7e8;color:#457b3d;display:grid;place-items:center;font-size:11px;z-index:1}
+.timeline-item b{display:block;font-size:11px}.timeline-item small{display:block;color:var(--muted);font-size:9px;margin-top:2px}
+.timeline-empty{padding:15px;border:1px dashed #d1dfcd;border-radius:13px;background:#f9fcf7;color:var(--muted);font-size:10px}
+.mission .mission-top{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.mission .mission-symbol{width:31px;height:31px;border-radius:10px;background:#e9f7e1;display:grid;place-items:center;font-size:15px}
+.reward-progress{display:flex;align-items:center;gap:12px;margin-top:14px;padding:12px;border-radius:15px;background:linear-gradient(115deg,#f2f9ed,#e9f5e2);border:1px solid rgba(60,110,48,.09)}
+.reward-icon{width:42px;height:42px;flex:0 0 42px;border-radius:14px;background:linear-gradient(145deg,#d7ffc0,#9ce879);display:grid;place-items:center;font-size:20px}
+.reward-progress b{display:block;font-size:11px}.reward-progress small{display:block;color:var(--muted);font-size:9px;margin-top:2px}
+@media(max-width:900px){.dashboard-extras{grid-template-columns:1fr}}
+@media(max-width:640px){
+ .dashboard-intro{align-items:flex-start;flex-direction:column;gap:12px}
+ .quick-actions{width:100%}.quick-action{flex:1;justify-content:center;padding:10px 8px;font-size:10px}
+ .milestone-track{gap:6px}.milestone{padding:10px 5px}.milestone .medal{width:28px;height:28px}.milestone b{font-size:10px}.milestone small{font-size:8px}
+ .next-milestone{padding:11px 12px}.next-milestone b{font-size:11px}.leaderboard-head{flex-direction:column;gap:5px}
+ .tabs{grid-template-columns:repeat(4,minmax(0,1fr))}.tab{padding:9px 4px;font-size:9px}
+}
 .footer{color:#86948b;font-size:10px;text-align:center;margin:30px 0 0;letter-spacing:.04em}
 .tabs{position:sticky;top:82px;z-index:10;display:flex;gap:4px;width:max-content;max-width:100%;overflow:auto;margin:20px 0 0;padding:5px;border:1px solid rgba(28,65,40,.08);border-radius:15px;background:rgba(255,255,255,.82);box-shadow:0 7px 24px rgba(24,49,31,.05);backdrop-filter:blur(16px);animation:riseIn .65s .2s var(--ease) both}
 .tab{position:relative;padding:10px 15px;border:0;border-radius:11px;background:transparent;color:var(--muted);font-size:11px;font-weight:900;transition:all .25s var(--ease);white-space:nowrap}
@@ -149,7 +200,11 @@ button,input,select,textarea{font:inherit}button{cursor:pointer}button:focus-vis
   <div class="notice">Draft preview only. Dates, registration details, mission content and singlet eligibility need final approval. This demo does not register members or connect to Verve systems.</div>
 
   <div id="memberView">
-    <div class="tabs" role="tablist"><button class="tab active" data-tab="overview" type="button">Overview</button><button class="tab" data-tab="missions" type="button">Missions</button><button class="tab" data-tab="activity" type="button">My activity</button></div>
+    <div class="dashboard-intro">
+      <div><div class="kicker">Your member dashboard</div><h2 id="memberGreeting">Ready to own your summer?</h2><p>Your progress, missions and activity — all in one place.</p></div>
+      <div class="quick-actions"><button class="quick-action primary" type="button" id="quickSubmit">＋ Submit holiday activity</button><button class="quick-action" type="button" id="quickMissions">◎ View missions</button></div>
+    </div>
+    <div class="tabs" role="tablist"><button class="tab active" data-tab="overview" type="button">Overview</button><button class="tab" data-tab="missions" type="button">Missions</button><button class="tab" data-tab="leaderboard" type="button">Leaderboard</button><button class="tab" data-tab="activity" type="button">My activity</button></div>
     <section class="panel active" id="overview">
       <div class="layout">
         <article class="card">
@@ -158,6 +213,7 @@ button,input,select,textarea{font:inherit}button{cursor:pointer}button:focus-vis
           <div class="bar"><span id="progressBar"></span></div>
           <div class="tiny muted" id="progressCopy">20 visits across six weeks. Sessions can be spread across the full program.</div>
           <div class="stats"><div class="stat"><b>6</b><span>Program weeks</span></div><div class="stat"><b>3</b><span>Member missions</span></div><div class="stat"><b id="missionDone">0/3</b><span>Missions completed</span></div></div>
+          <div class="reward-progress"><div class="reward-icon">🏅</div><div><b id="rewardHeadline">Your Summer Survivor singlet is within reach</b><small id="rewardCopy">Reach 20 verified visits to meet the proposed completion target. Reward eligibility awaits final approval.</small></div></div>
         </article>
         <article class="card"><h2>What counts?</h2><p class="sub">Two ways to keep your visits moving.</p>
           <div class="rule"><div class="iconbox">V</div><div><b>Verve studio visits</b><p>Attend your usual eligible Verve sessions. Attendance is verified by the team.</p></div></div>
@@ -166,8 +222,13 @@ button,input,select,textarea{font:inherit}button{cursor:pointer}button:focus-vis
         </article>
       </div>
       <article class="card" style="margin-top:18px"><h2>Your three missions</h2><p class="sub">Only three missions across the six-week season. Mission details and release dates are awaiting confirmation.</p><div class="section-grid" id="missionCards"></div></article>
+      <div class="dashboard-extras">
+        <article class="card"><h2>Your milestone path</h2><p class="sub">Every five visits brings you closer to Summer Survivor status.</p><div class="milestone-track" id="milestoneTrack"></div><div class="next-milestone"><div><b id="nextMilestoneTitle">Your first milestone is 5 visits away</b><span id="nextMilestoneCopy">Every visit moves you forward.</span></div><strong id="nextMilestoneCount">5 left</strong></div></article>
+        <article class="card"><div class="leaderboard-head"><div><h2>Summer leaderboard</h2><p class="sub" style="margin-bottom:0">A little friendly competition keeps the momentum going.</p></div><span class="live-note">Monday updates</span></div><div class="leaderboard-list" id="leaderboardRows"></div><div class="leaderboard-foot"><span id="yourRank">Your demo position appears here</span><span class="draft-label">Sample preview</span></div></article>
+      </div>
     </section>
     <section class="panel" id="missions"><article class="card"><h2>Member missions</h2><p class="sub">Three missions will be released during the program. Each mission below is a placeholder until Verve confirms the activity and timing.</p><div id="missionDetails" class="stack"></div></article></section>
+    <section class="panel" id="leaderboard"><article class="card"><div class="leaderboard-head"><div><h2>Leaderboard</h2><p class="sub">Rankings are based on verified eligible visits. The board is a visual preview until member data is connected.</p></div><span class="live-note">Updated Mondays</span></div><div class="leaderboard-list" id="leaderboardRowsFull"></div><div class="notice" style="margin-top:14px">Preview only: sample entries are illustrative. Real member rankings will appear once the shared database and attendance verification are connected.</div></article></section>
     <section class="panel" id="activity">
       <div class="layout"><article class="card"><h2>Submit a holiday session</h2><p class="sub">Use this form in the prototype to submit a holiday workout or yoga practice for team review.</p>
         <form id="holidayForm">
@@ -179,17 +240,17 @@ button,input,select,textarea{font:inherit}button{cursor:pointer}button:focus-vis
           <button class="btn" type="submit">Submit for review</button>
           <p class="tiny muted">Demo only: submissions stay in this browser and are not sent to Verve.</p>
         </form>
-      </article><article class="card"><h2>My submitted activity</h2><p class="sub">Holiday sessions need team approval before they count.</p><div id="activityList" class="activity-list"><div class="empty">No holiday sessions submitted yet.</div></div></article></div>
+      </article><article class="card"><h2>My submitted activity</h2><p class="sub">Holiday sessions need team approval before they count.</p><div id="activityList" class="activity-list"><div class="empty">No holiday sessions submitted yet.</div></div><h2 style="margin-top:22px">Recent activity</h2><p class="sub" style="margin-bottom:8px">A simple timeline of your latest updates.</p><div id="activityTimeline" class="activity-timeline"><div class="timeline-empty">Your activity will appear here as you take part.</div></div></article></div>
     </section>
   </div>
 
   <section id="adminView" class="hidden">
-    <div class="layout"><article class="card"><h2>Program overview</h2><p class="sub">Sample admin controls for demonstrating the member experience. Not connected to Momence or the booking system.</p><div class="admin-grid"><div class="admin-stat"><b id="adminRegistrations">1</b><span>Demo registrant</span></div><div class="admin-stat"><b id="adminVisits">0</b><span>Verified visits</span></div><div class="admin-stat"><b id="adminPending">0</b><span>Pending holiday claims</span></div></div><div class="field"><label for="adminVisitInput">Demo member: verified studio visits</label><input type="number" id="adminVisitInput" min="0" max="20" value="0"></div><button class="btn small" type="button" id="updateVisits">Update demo progress</button><p class="tiny muted">In a real version, attendance should sync from or be confirmed against Verve's booking system. This control is only for preview.</p></article>
+    <div class="layout"><article class="card"><h2>Program overview</h2><p class="sub">Sample admin controls for demonstrating the member experience. Not connected to Momence or the booking system.</p><div class="admin-grid"><div class="admin-stat"><b id="adminRegistrations">1</b><span>Demo registrant</span></div><div class="admin-stat"><b id="adminVisits">0</b><span>Verified visits</span></div><div class="admin-stat"><b id="adminPending">0</b><span>Pending holiday claims</span></div></div><div class="field"><label for="adminVisitInput">Demo member: verified studio visits</label><input type="number" id="adminVisitInput" min="0" max="20" value="0"></div><button class="btn small" type="button" id="updateVisits">Update demo progress</button><div class="field" style="margin-top:15px"><label for="adminMissionInput">Demo member: missions completed</label><input type="number" id="adminMissionInput" min="0" max="3" value="0"></div><button class="btn ghost small" type="button" id="updateMissions">Update demo missions</button><p class="tiny muted">These controls only change this browser's demo data. A real version needs shared staff access and verified attendance records.</p></article>
     <article class="card"><h2>Program settings in this draft</h2><div class="rule"><div><b>Program dates</b><p>14 Dec 2026 – 24 Jan 2027 (draft)</p></div></div><div class="rule"><div><b>Completion target</b><p>20 eligible visits in six weeks</p></div></div><div class="rule"><div><b>Missions</b><p>Three total, not one every week. Details TBC.</p></div></div><div class="rule"><div><b>Holiday proof</b><p>Outside home postcode + public social post tagging Verve.</p></div></div><div class="rule"><div><b>Reward</b><p>Exclusive singlet for 20-visit completers (proposed; approval TBC).</p></div></div></article></div>
     <article class="card" style="margin-top:18px"><h2>Holiday session review queue</h2><p class="sub">Approve a demo submission to see how verified progress changes.</p><div id="adminQueue" class="activity-list"><div class="empty">No pending submissions.</div></div></article>
     <article class="card" style="margin-top:18px"><h2>Mission setup</h2><p class="sub">Placeholders only. Add the three approved missions and their release dates when Nath confirms them.</p><div id="adminMissions" class="stack"></div></article>
   </section>
-  <footer class="footer">Verve For Life · Summer Survivor 2026/27 · Concept prototype · Not connected to live member data</footer>
+  <footer class="footer">Verve For Life · Summer Survivor 2026/27 · Interactive concept prototype · Leaderboard uses sample data · Not connected to live member data</footer>
 </div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
@@ -200,27 +261,60 @@ button,input,select,textarea{font:inherit}button{cursor:pointer}button:focus-vis
 </dialog>
 <script>
 const $=s=>document.querySelector(s);const $$=s=>[...document.querySelectorAll(s)];
-const missions=[{id:1,label:'Mission 1',week:'Release date TBC',name:'Mission details to be confirmed'},{id:2,label:'Mission 2',week:'Release date TBC',name:'Mission details to be confirmed'},{id:3,label:'Mission 3',week:'Release date TBC',name:'Mission details to be confirmed'}];
-let data={visits:0,missionsDone:0,claims:[],registration:null};
+const missions=[
+ {id:1,label:'Mission 01',week:'Release date TBC',name:'Your first Summer mission',symbol:'☀️'},
+ {id:2,label:'Mission 02',week:'Release date TBC',name:'A little challenge, a lot of fun',symbol:'⚡'},
+ {id:3,label:'Mission 03',week:'Release date TBC',name:'Finish the season together',symbol:'🏁'}
+];
+const demoStandings=[
+ {name:'Demo member A',visits:18},{name:'Demo member B',visits:16},{name:'Demo member C',visits:14},{name:'Demo member D',visits:12},{name:'Demo member E',visits:10}
+];
+let data={visits:0,missionsDone:0,claims:[],registration:null,activityLog:[]};
 try{const saved=JSON.parse(localStorage.getItem('vflSummerSurvivorDemo')||'null');if(saved)data={...data,...saved}}catch(e){}
+data.claims=Array.isArray(data.claims)?data.claims:[];data.activityLog=Array.isArray(data.activityLog)?data.activityLog:[];
+function logActivity(title,detail){data.activityLog.unshift({title,detail,date:new Date().toLocaleDateString(undefined,{day:'numeric',month:'short'})});data.activityLog=data.activityLog.slice(0,8)}
 function save(){localStorage.setItem('vflSummerSurvivorDemo',JSON.stringify(data));render()}
 function toast(message){const t=$('#toast');t.textContent=message;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2600)}
-function render(){const count=Math.min(20,Math.max(0,Number(data.visits)||0));$('#visitCount').textContent=count;$('#progressBar').style.width=(count/20*100)+'%';$('#progressCopy').textContent=count>=20?'You have reached the 20-visit target. The team can confirm completion and reward eligibility.':`${20-count} more verified ${20-count===1?'visit':'visits'} to reach your 20-visit target.`;$('#progressStatus').textContent=count>=20?'Target reached':'In progress';$('#progressStatus').className='status '+(count>=20?'approved':'pending');$('#missionDone').textContent=(data.missionsDone||0)+'/3';$('#adminVisits').textContent=count;$('#adminPending').textContent=data.claims.filter(x=>x.status==='Pending').length;$('#adminVisitInput').value=count;
- $('#missionCards').innerHTML=missions.map(m=>`<div class="mission"><div class="week">${m.label} · ${m.week}</div><h3>${m.name}</h3><p>Mission activity and completion instructions will appear here once approved.</p><span class="status">Coming soon</span></div>`).join('');
- $('#missionDetails').innerHTML=missions.map(m=>`<div class="activity"><div><b>${m.label}: details TBC</b><small>${m.week} · Mission instructions not yet published.</small></div><span class="status">Locked</span></div>`).join('');
- const claims=data.claims||[];$('#activityList').innerHTML=claims.length?claims.map(c=>`<div class="activity"><div><b>${c.type}</b><small>${c.date} · Postcode ${c.postcode} · <a href="${escapeAttr(c.link)}" target="_blank" rel="noopener">View social post</a></small></div><span class="status ${c.status==='Approved'?'approved':'pending'}">${c.status}</span></div>`).join(''):'<div class="empty">No holiday sessions submitted yet.</div>';
- $('#adminQueue').innerHTML=claims.filter(c=>c.status==='Pending').length?claims.filter(c=>c.status==='Pending').map(c=>`<div class="activity"><div><b>${c.type} · ${c.date}</b><small>Postcode ${c.postcode} · <a href="${escapeAttr(c.link)}" target="_blank" rel="noopener">Open social post</a> · Member-tag confirmation recorded</small></div><button class="btn small" type="button" data-approve="${c.id}">Approve demo</button></div>`).join(''):'<div class="empty">No pending submissions.</div>';
+function renderLeaderboard(targetId,count){
+ const you={name:'You',visits:count,isYou:true};
+ const rows=[...demoStandings,you].sort((a,b)=>b.visits-a.visits||String(a.name).localeCompare(String(b.name)));
+ const yourRank=rows.findIndex(x=>x.isYou)+1;
+ const html=rows.map((r,i)=>`<div class="leader-row ${r.isYou?'you':''}"><span class="rank-number">${i+1}</span><div class="leader-person"><b>${r.isYou?(data.registration?.name?escapeAttr(data.registration.name.split(' ')[0])+' (you)':'You'):r.name}</b><small>${r.isYou?'Your verified demo visits':'Illustrative sample member'}</small></div><div class="leader-score">${r.visits}<small>visits</small></div></div>`).join('');
+ const el=document.getElementById(targetId);if(el)el.innerHTML=html;
+ return yourRank;
+}
+function render(){
+ const count=Math.min(20,Math.max(0,Number(data.visits)||0));
+ const percent=Math.round(count/20*100);const next=[5,10,15,20].find(n=>n>count)||20;const remaining=Math.max(0,next-count);
+ $('#visitCount').textContent=count;$('#progressBar').style.width=percent+'%';$('#progressCopy').textContent=count>=20?'You have reached the 20-visit target. The team can confirm completion and reward eligibility.':`${20-count} more verified ${20-count===1?'visit':'visits'} to reach your 20-visit target.`;
+ $('#progressStatus').textContent=count>=20?'Target reached':'In progress';$('#progressStatus').className='status '+(count>=20?'approved':'pending');$('#missionDone').textContent=(data.missionsDone||0)+'/3';
+ $('#rewardHeadline').textContent=count>=20?'You have reached the completion target!':'Your Summer Survivor singlet is within reach';
+ $('#rewardCopy').textContent=count>=20?'Your 20 visits are recorded in this demo. Final reward eligibility is subject to Verve approval.':'Reach 20 verified visits to meet the proposed completion target. Reward eligibility awaits final approval.';
+ $('#memberGreeting').textContent=data.registration?.name?`Keep going, ${data.registration.name.split(' ')[0]}!`:'Ready to own your summer?';
+ $('#adminVisits').textContent=count;$('#adminPending').textContent=data.claims.filter(x=>x.status==='Pending').length;$('#adminVisitInput').value=count;$('#adminMissionInput').value=Math.min(3,Math.max(0,Number(data.missionsDone)||0));
+ $('#milestoneTrack').innerHTML=[5,10,15,20].map((m,i)=>`<div class="milestone ${count>=m?'unlocked':''}"><div class="medal">${count>=m?'✓':['🌱','🔥','💪','🏆'][i]}</div><b>${m} visits</b><small>${count>=m?'Unlocked':'Milestone'}</small></div>`).join('');
+ $('#nextMilestoneTitle').textContent=count>=20?'All milestones unlocked!':`${remaining} ${remaining===1?'visit':'visits'} to your next milestone`;
+ $('#nextMilestoneCopy').textContent=count>=20?'You have reached the 20-visit target.':'Keep building your rhythm, one visit at a time.';
+ $('#nextMilestoneCount').textContent=count>=20?'20 / 20':`${remaining} left`;
+ const rank=renderLeaderboard('leaderboardRows',count);renderLeaderboard('leaderboardRowsFull',count);$('#yourRank').textContent=`Your sample position: #${rank} of ${demoStandings.length+1}`;
+ $('#missionCards').innerHTML=missions.map((m,i)=>`<div class="mission"><div class="mission-top"><div class="week">${m.label} · ${m.week}</div><span class="mission-symbol">${m.symbol}</span></div><h3>${m.name}</h3><p>Mission activity and instructions will appear here once Verve confirms the details.</p><span class="status ${(i<(Number(data.missionsDone)||0))?'approved':''}">${i<(Number(data.missionsDone)||0)?'Demo completed':'Coming soon'}</span></div>`).join('');
+ $('#missionDetails').innerHTML=missions.map((m,i)=>`<div class="activity"><div><b>${m.label}: details TBC</b><small>${m.week} · Mission instructions not yet published.</small></div><span class="status ${(i<(Number(data.missionsDone)||0))?'approved':''}">${i<(Number(data.missionsDone)||0)?'Demo completed':'Locked'}</span></div>`).join('');
+ const claims=data.claims||[];
+ $('#activityList').innerHTML=claims.length?claims.map(c=>`<div class="activity"><div><b>${escapeAttr(c.type)}</b><small>${escapeAttr(c.date)} · Postcode ${escapeAttr(c.postcode)} · <a href="${escapeAttr(c.link)}" target="_blank" rel="noopener">View social post</a></small></div><span class="status ${c.status==='Approved'?'approved':'pending'}">${escapeAttr(c.status)}</span></div>`).join(''):'<div class="empty">No holiday sessions submitted yet.</div>';
+ $('#activityTimeline').innerHTML=data.activityLog.length?data.activityLog.map(a=>`<div class="timeline-item"><div class="timeline-icon">✓</div><div><b>${escapeAttr(a.title)}</b><small>${escapeAttr(a.date)} · ${escapeAttr(a.detail||'')}</small></div></div>`).join(''):'<div class="timeline-empty">Your activity will appear here as you take part.</div>';
+ $('#adminQueue').innerHTML=claims.filter(c=>c.status==='Pending').length?claims.filter(c=>c.status==='Pending').map(c=>`<div class="activity"><div><b>${escapeAttr(c.type)} · ${escapeAttr(c.date)}</b><small>Postcode ${escapeAttr(c.postcode)} · <a href="${escapeAttr(c.link)}" target="_blank" rel="noopener">Open social post</a> · Member-tag confirmation recorded</small></div><button class="btn small" type="button" data-approve="${c.id}">Approve demo</button></div>`).join(''):'<div class="empty">No pending submissions.</div>';
  $('#adminMissions').innerHTML=missions.map(m=>`<div class="activity"><div><b>${m.label}</b><small>${m.week} · ${m.name}</small></div><span class="status">Needs setup</span></div>`).join('');
- $$('[data-approve]').forEach(b=>b.addEventListener('click',()=>{const c=data.claims.find(x=>x.id===b.dataset.approve);if(c){c.status='Approved';data.visits=Math.min(20,(Number(data.visits)||0)+1);save();toast('Demo submission approved and one visit added.')}}));
+ $$('[data-approve]').forEach(b=>b.addEventListener('click',()=>{const c=data.claims.find(x=>x.id===b.dataset.approve);if(c){c.status='Approved';data.visits=Math.min(20,(Number(data.visits)||0)+1);logActivity('Holiday session approved',`${c.type} added to your verified visits`);save();toast('Demo submission approved and one visit added.')}}));
 }
 function escapeAttr(s){return String(s).replace(/[&"<>']/g,c=>({'&':'&amp;','"':'&quot;','<':'&lt;','>':'&gt;',"'":'&#39;'}[c]))}
 $$('.tab').forEach(b=>b.addEventListener('click',()=>{$$('.tab').forEach(x=>x.classList.toggle('active',x===b));$$('.panel').forEach(p=>p.classList.toggle('active',p.id===b.dataset.tab))}));
 $('#memberMode').onclick=()=>{$('#memberMode').classList.add('active');$('#adminMode').classList.remove('active');$('#memberView').classList.remove('hidden');$('#adminView').classList.add('hidden')};
 $('#adminMode').onclick=()=>{$('#adminMode').classList.add('active');$('#memberMode').classList.remove('active');$('#memberView').classList.add('hidden');$('#adminView').classList.remove('hidden')};
 $('#joinBtn').onclick=()=>$('#joinDialog').showModal();$('#rulesBtn').onclick=()=>{document.querySelector('[data-tab="overview"]').click();document.querySelector('#overview .layout .card:nth-child(2)').scrollIntoView({behavior:'smooth',block:'center'})};
-$('#registrationForm').addEventListener('submit',e=>{e.preventDefault();data.registration={name:$('#memberName').value,email:$('#memberEmail').value};save();$('#joinDialog').close();toast('Demo registration completed. No data was sent.');});
-$('#holidayForm').addEventListener('submit',e=>{e.preventDefault();const post=$('#activityPostcode').value.trim(),home=$('#homePostcode').value.trim();if(post===home){toast('This activity must be outside your home postcode.');return}const link=$('#socialLink').value.trim();try{const u=new URL(link);if(!['http:','https:'].includes(u.protocol))throw new Error();}catch{toast('Please enter a valid social post URL.');return}data.claims.push({id:String(Date.now()),type:$('#activityType').value,date:$('#activityDate').value,postcode:post,link,status:'Pending'});save();e.target.reset();toast('Demo submission added for team review.');});
-$('#updateVisits').onclick=()=>{const v=Math.max(0,Math.min(20,parseInt($('#adminVisitInput').value||'0',10)));data.visits=v;save();toast('Demo attendance updated.');};
+$('#quickSubmit').onclick=()=>{document.querySelector('[data-tab="activity"]').click();document.querySelector('#holidayForm').scrollIntoView({behavior:'smooth',block:'center'})};$('#quickMissions').onclick=()=>document.querySelector('[data-tab="missions"]').click();
+$('#registrationForm').addEventListener('submit',e=>{e.preventDefault();data.registration={name:$('#memberName').value,email:$('#memberEmail').value};logActivity('Joined Summer Survivor','Your demo registration is saved in this browser only.');save();$('#joinDialog').close();toast('Demo registration completed. No data was sent.');});
+$('#holidayForm').addEventListener('submit',e=>{e.preventDefault();const post=$('#activityPostcode').value.trim(),home=$('#homePostcode').value.trim();if(post===home){toast('This activity must be outside your home postcode.');return}const link=$('#socialLink').value.trim();try{const u=new URL(link);if(!['http:','https:'].includes(u.protocol))throw new Error();}catch{toast('Please enter a valid social post URL.');return}data.claims.push({id:String(Date.now()),type:$('#activityType').value,date:$('#activityDate').value,postcode:post,link,status:'Pending'});logActivity('Holiday activity submitted','Awaiting Verve team review.');save();e.target.reset();toast('Demo submission added for team review.');});
+$('#updateVisits').onclick=()=>{const v=Math.max(0,Math.min(20,parseInt($('#adminVisitInput').value||'0',10)));const previous=Number(data.visits)||0;data.visits=v;if(v!==previous)logActivity('Attendance updated',`${Math.abs(v-previous)} ${Math.abs(v-previous)===1?'visit':'visits'} ${v>previous?'added':'adjusted'} in this demo.`);save();toast('Demo attendance updated.');};$('#updateMissions').onclick=()=>{data.missionsDone=Math.max(0,Math.min(3,parseInt($('#adminMissionInput').value||'0',10)));logActivity('Mission progress updated',`${data.missionsDone} of 3 demo missions marked complete.`);save();toast('Demo mission progress updated.');};
 render();
 </script>
 </body>
