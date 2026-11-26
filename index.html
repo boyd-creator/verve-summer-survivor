@@ -328,6 +328,7 @@ button:disabled{opacity:.55;cursor:not-allowed;transform:none!important}
     <div class="field"><label for="memberPassword">Password</label><input id="memberPassword" type="password" required minlength="8" autocomplete="new-password" placeholder="At least 8 characters"></div>
     <div class="field"><label for="memberHomePostcode">Home postcode</label><input id="memberHomePostcode" inputmode="numeric" maxlength="4" pattern="[0-9]{4}" required placeholder="4-digit Australian postcode"></div>
     <button class="btn" id="signupSubmit" type="submit">Create member account</button>
+    <button class="btn ghost small" id="resendConfirmation" type="button" style="margin-top:10px;width:100%">Resend confirmation email</button>
   </form>
   <form id="signinForm" class="hidden">
     <div class="field"><label for="signinEmail">Email address</label><input id="signinEmail" type="email" required autocomplete="email" placeholder="you@example.com"></div>
@@ -343,6 +344,7 @@ const $$=s=>[...document.querySelectorAll(s)];
 const SUPABASE_URL='https://bkckrtucdcpqiyblsigc.supabase.co';
 const SUPABASE_PUBLISHABLE_KEY='sb_publishable_KrXSRiu3AlgWBRdvt9f9Xg_oDoJCaVl';
 const PROGRAM_ID='a72cf0e6-5a01-4a29-91d8-26f0d3a7b627';
+const APP_URL='https://verve-summer-survivor.netlify.app';
 const sb=(window.supabase&&window.supabase.createClient)
   ? window.supabase.createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}})
   : null;
@@ -479,10 +481,16 @@ async function loadAdmin(){
   const [regRes,visRes,actRes,missionRes]=await Promise.all([
     sb.from('registrations').select('id,member_id,registered_at,status,profiles(display_name,home_postcode)').eq('program_id',PROGRAM_ID).order('registered_at',{ascending:false}),
     sb.from('visits').select('id,member_id,attendance_date,visit_source').eq('program_id',PROGRAM_ID),
-    sb.from('activity_submissions').select('id,member_id,activity_date,activity_type,activity_postcode,social_post_url,status,submitted_at,profiles(display_name)').eq('program_id',PROGRAM_ID).order('submitted_at',{ascending:false}),
+    sb.from('activity_submissions').select('id,member_id,activity_date,activity_type,activity_postcode,social_post_url,status,submitted_at,profiles!activity_submissions_member_id_fkey(display_name)').eq('program_id',PROGRAM_ID).order('submitted_at',{ascending:false}),
     sb.from('missions').select('*').eq('program_id',PROGRAM_ID).order('mission_number')
   ]);
-  if(regRes.error||visRes.error||actRes.error||missionRes.error){setNotice('Staff dashboard could not load all data. Check staff permissions.','error');return;}
+  if(regRes.error||visRes.error||actRes.error||missionRes.error){
+    const failed=[['registrations',regRes.error],['visits',visRes.error],['activity_submissions',actRes.error],['missions',missionRes.error]].filter(([,err])=>err);
+    console.error('Summer Survivor admin data load failed:',failed);
+    const details=failed.map(([table,err])=>`${table}: ${err.message||err.code||'Request failed'}`).join(' · ');
+    setNotice('Staff dashboard could not load all data. '+details,'error');
+    return;
+  }
   state.registrations=regRes.data||[];state.staffVisits=visRes.data||[];state.staffActivities=actRes.data||[];
   $('#adminRegistrations').textContent=state.registrations.filter(r=>r.status==='active').length;
   $('#adminVisits').textContent=state.staffVisits.length;
@@ -517,11 +525,22 @@ $('#signupForm').addEventListener('submit',async e=>{
   const name=$('#memberName').value.trim(),email=$('#memberEmail').value.trim(),password=$('#memberPassword').value,postcode=$('#memberHomePostcode').value.trim();
   if(!/^\d{4}$/.test(postcode)){toast('Enter a valid four-digit Australian postcode.');return;}
   const button=$('#signupSubmit');setBusy(button,true,'Creating account…');$('#authFeedback').textContent='';
-  const {data,error}=await sb.auth.signUp({email,password,options:{data:{display_name:name,home_postcode:postcode}}});setBusy(button,false);
+  const {data,error}=await sb.auth.signUp({email,password,options:{emailRedirectTo:APP_URL,data:{display_name:name,home_postcode:postcode}}});setBusy(button,false);
   if(error){$('#authFeedback').textContent=friendlyError(error);return;}
   if(data.session){$('#joinDialog').close();toast('Account created. Check your program registration status.');await refreshApp();}
   else{$('#authFeedback').textContent='Account created. Please check your email for a confirmation link, then return here and sign in. Your Summer Survivor registration is not completed until the program opens.';}
 });
+
+$('#resendConfirmation').addEventListener('click',async()=>{
+  if(!sb){$('#authFeedback').textContent='Database connection is unavailable. Please refresh the page and try again.';return;}
+  const email=$('#memberEmail').value.trim();
+  if(!email){$('#authFeedback').textContent='Enter the email address you used to create your account first.';$('#memberEmail').focus();return;}
+  const button=$('#resendConfirmation');setBusy(button,true,'Sending confirmation…');$('#authFeedback').textContent='';
+  const {error}=await sb.auth.resend({type:'signup',email,options:{emailRedirectTo:APP_URL}});
+  setBusy(button,false);
+  $('#authFeedback').textContent=error?friendlyError(error):'A fresh confirmation email has been sent. Open the newest email and use its confirmation link. It should return you to the Verve Summer Survivor app.';
+});
+
 $('#signinForm').addEventListener('submit',async e=>{
   e.preventDefault();const button=$('#signinForm button[type="submit"]');setBusy(button,true,'Signing in…');$('#authFeedback').textContent='';
   const {error}=await sb.auth.signInWithPassword({email:$('#signinEmail').value.trim(),password:$('#signinPassword').value});setBusy(button,false);
